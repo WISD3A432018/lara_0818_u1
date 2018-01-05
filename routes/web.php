@@ -15,12 +15,5 @@
 use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
-    $data = [‘name’ => ‘張三’, ‘content’=> "test mail", ];
-    Mail::send(‘email.test’, $data, function($message){
-        $message->subject('Laravel 5 Mail');
-        $message->to('img21326@gmail.com', '張三');
-        $message->from('test@ncut.edu.tw', 'netadmin');
-    });
-
     return view('welcome');
 });
