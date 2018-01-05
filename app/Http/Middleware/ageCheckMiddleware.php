@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ageCheckMiddleware
@@ -14,13 +15,13 @@ class ageCheckMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next,Request $request)
     {
-        if (Auth::check()) {
-            if(Auth::user()->age > 18){
-                return $next($request);
-            }
+        if($request->age > 18){
+            return $next($request);
+        }else{
+            return redirect('/home');
         }
-        return redirect('/home');
+
     }
 }
